@@ -3,6 +3,7 @@ using EFCodeFirstEducation.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCodeFirstEducation.Migrations
 {
     [DbContext(typeof(Deneme2Context))]
-    partial class Deneme2ContextModelSnapshot : ModelSnapshot
+    [Migration("20221003215416_Test8")]
+    partial class Test8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,9 +53,6 @@ namespace EFCodeFirstEducation.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"), 1L, 1);
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("varchar(100)")
@@ -63,8 +62,6 @@ namespace EFCodeFirstEducation.Migrations
                         .HasColumnType("money");
 
                     b.HasKey("ProductId");
-
-                    b.HasIndex("CategoryId");
 
                     b.ToTable("Urunler");
                 });
@@ -94,17 +91,6 @@ namespace EFCodeFirstEducation.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Seckins");
-                });
-
-            modelBuilder.Entity("EFCodeFirstEducation.Model.Product", b =>
-                {
-                    b.HasOne("EFCodeFirstEducation.Model.Category", "category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("category");
                 });
 #pragma warning restore 612, 618
         }

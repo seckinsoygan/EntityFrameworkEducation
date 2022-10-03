@@ -7,7 +7,14 @@ namespace EFCodeFirstEducation.Controllers
     [ApiController]
     public class HomeController : ControllerBase
     {
-        Deneme2Context _context = new Deneme2Context();
+        //Deneme2Context _context = new Deneme2Context();
+
+        Deneme2Context _context; //Constructor yapısıyla çağırıyoruz.
+
+        public HomeController(Deneme2Context context)
+        {
+            _context = context;
+        }
 
         [HttpGet("[action]")]
         public IActionResult GetList()
